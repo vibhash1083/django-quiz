@@ -1,12 +1,15 @@
-from django.shortcuts import render,redirect
-from django.contrib import messages
-from django.http import HttpResponse
 import random
+
 from core import settings
-from quiz.models import *
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from quiz.models import *
+
 
 @login_required(login_url=settings.LOGIN_URL)
 def index(request):
@@ -20,8 +23,6 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            # user = authenticate(username=username, password=raw_password)
-            # login(request, user)
             return redirect('login')
     else:
         form = UserCreationForm()
@@ -103,12 +104,13 @@ def validate_mcq(request,level_id,question_id=None):
 @login_required(login_url=settings.LOGIN_URL)
 def get_mcq(request,level_id):
     score_info = Level.objects.get(id=level_id)
-    if Questions.objects.filter(is_repeated=True).count() > 10:
+    ques_left = Questions.objects.filter(level_no=score_info.level_flag, is_repeated=False).count()
+    if ques_left == 0:
         return render(request, 'quiz/scorecard.html', {'score_info':score_info})
     else:
         question = random.choice(Questions.objects.filter(level_no=score_info.level_flag, is_repeated=False))
         options = Answers.objects.filter(ques=question)
-        ques_left = 10 - Questions.objects.filter(is_repeated=True).count()
+        
         return render(request, 'quiz/quiz.html', {'data': options,'ques':question, 'sco':score_info,'ques_left':ques_left})
 
 @login_required(login_url=settings.LOGIN_URL)
