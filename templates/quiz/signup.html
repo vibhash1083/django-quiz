@@ -1,0 +1,90 @@
+
+{% extends 'quiz/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}SignUp Page{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+      <div class="row">
+      <div class="col-md-8">
+          <img class="img-fluid" src="https://www.act-on.com/blog/wp-content/uploads/2015/04/Quiz.png" alt="Card image" style="width:100%">
+        </div>
+        <div class="col-md-4">
+          <div class="jumbotron">
+            <h2>Sign Up</h2>
+                <br>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                      {{ field|as_crispy_field }}
+                        {% comment %} {{ field.label_tag }} {% endcomment %}
+                        {% comment %} {% if field.help_text %}
+                          <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                          <p style="color: red">{{ error }}</p>
+                        {% endfor %} {% endcomment %}
+                    {% endfor %}
+                    <br>
+                    <div class="row text-center">
+                      <button type="submit" class="btn btn-success btn-lg">SignUp</button>
+                    </div>
+                </form>
+          </div>
+        
+        
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+    {% comment %} <h1>SignUp Page</h1>
+    
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+      {{ form.as_p }}
+      <button type="submit">Sign up</button>
+    </form>
+{% endblock %} {% endcomment %}
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp Page</title>
+</head>
+<body>
+<h1>SignUp Page</h1>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+</body>
+</html> {% endcomment %}
