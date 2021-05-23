@@ -17,7 +17,7 @@ class PopulateData(models.Model):
             csvreader = csv.reader(f)
             for row in csvreader:
                 for data in row:
-                    ques = Questions.objects.create(question_text=row[0])
+                    ques = Question.objects.create(question_text=row[0])
                     for i in range(4):
                         Choice.objects.create(
                             ques=ques, choice_text=row[i+1])
