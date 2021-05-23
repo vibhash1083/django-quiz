@@ -12,7 +12,7 @@
         </div>        
         {% for choice in choices %}
         <div class="col-md-12">
-            <input type="radio" id="{{ choice.id }}" name="question_{{ element.question.id }}" value="{{ choice.id }}">
+            <input type="radio" id="{{ choice.id }}" name="choice" value="{{ choice.id }}">
             <label for="{{ choice.id }}">
                 <p>{{ choice.choice_text }}</p>
             </label>
