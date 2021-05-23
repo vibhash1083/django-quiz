@@ -1,11 +1,8 @@
 from django.contrib import admin
 
-from .models import *
-
-admin.site.register(Level)
-admin.site.register(Questions)
-admin.site.register(Answers)
-admin.site.register(Category)
-admin.site.register(PopulateData)
+from .models import PopulateData, Question, Choice
 
 # Register your models here.
+admin.site.register(Question)
+admin.site.register(Choice)
+admin.site.register(PopulateData)

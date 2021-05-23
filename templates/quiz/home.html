@@ -1,18 +1,26 @@
-{% extends 'quiz/base.html' %}
+{% extends 'base.html' %}
 
-{% block title %}Quiz - Home Page{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="container-fluid text-center">
-    <div class="jumbotron">
-        <h1>Welcome to Quiz World</h1>
-        
-        {% if level.prev_score %}
-        <p>Your Previous Score:{{ level.prev_score }}</p>
-        <a role="button" class="btn btn-primary" href="{% url 'quiz_again' level.id %}">Take Quiz again</a>
-        {% else %}
-        <a role="button" class="btn btn-primary" href="{% url 'get_mcq' level.id %}">Take Quiz</a>
-        {% endif %}
-    </div>
+    <h1>Welcome</h1>
+    <form method="POST" id="quiz" class="post-form" action="">
+        {% csrf_token %}
+        {% for element in data %}
+        <div class="col-md-12">
+            <h2>{{element.question.question_text}}</h2>
+        </div>        
+        {% for choice in element.choices %}
+        <div class="col-md-12">
+            <input type="radio" id="{{ choice.id }}" name="question_{{ element.question.id }}" value="{{ choice.id }}">
+            <label for="{{ choice.id }}">
+                <p>{{ choice.choice_text }}</p>
+            </label>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        <button type="submit" class="save btn btn-success">Submit</button>
+    </form>
 </div>
 {% endblock %}

@@ -6,89 +6,20 @@
 
 {% block content %}
 <div class="container-fluid">
-<div class="row">
-	
-        <div class="col-md-8">
-            <img class="img-fluid" src="https://www.drupal.org/files/project-images/quiz-image_0.jpg" alt="Card image" style="width:100%">
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white align-items-center" style="width: 300px;">
-                <img class="card-img-top" src="https://cdn1.vectorstock.com/i/thumb-large/59/65/nerd-guy-avatar-icon-vector-21065965.jpg" alt="Avtar Image" style="width:100%">
-                <div class="text-center">
-                    <h4 class="card-title"><b>Login</b></h4>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-success">Login</button>
-                    </form>
-                </div>
-        </div>
-</div>
-</div>
-</div>
-{% endblock %}
-    {% comment %} <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-    </form>
-    <p>Not a user?</p>
-    <a class="btn" href="{% url 'signup' %}">SignUp</a> {% endcomment %}
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card text-white align-items-center" style="width: 300px;">
 
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
-</head>
-<body>
-<h1>Login Page</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-</body>
-</html> {% endcomment %}
-
-
-
-{% comment %} <div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo">
-					</div>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-					<form>
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="username">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
-						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="button" name="button" class="btn login_btn">Login</button>
-				   </div>
+				<div class="text-center">
+					<h4 class="card-title"><b>Login</b></h4>
+					<form method="post">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<button type="submit" class="btn btn-success">Login</button>
 					</form>
-				</div>
-		
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
-					</div>
 				</div>
 			</div>
 		</div>
-	</div> {% endcomment %}
+	</div>
+</div>
+{% endblock %}
