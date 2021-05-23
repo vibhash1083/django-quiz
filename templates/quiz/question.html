@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    <h1>Welcome</h1>
+    <form method="POST" id="quiz" class="post-form" action="">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h2>{{question.question_text}}</h2>
+        </div>        
+        {% for choice in choices %}
+        <div class="col-md-12">
+            <input type="radio" id="{{ choice.id }}" name="question_{{ element.question.id }}" value="{{ choice.id }}">
+            <label for="{{ choice.id }}">
+                <p>{{ choice.choice_text }}</p>
+            </label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="save btn btn-success">Submit</button>
+    </form>
+</div>
+{% endblock %}
