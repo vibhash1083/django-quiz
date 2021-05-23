@@ -20,7 +20,7 @@ class PopulateData(models.Model):
                     ques = Questions.objects.create(question_text=row[0])
                     for i in range(4):
                         Choice.objects.create(
-                            ques=ques, choice_text=row[i+1], right_answer=(int(row[5]) == i+1))
+                            ques=ques, choice_text=row[i+1])
 
 
 class Question(models.Model):
