@@ -16,11 +16,10 @@ class PopulateData(models.Model):
         with open(latest_file, 'r') as f:
             csvreader = csv.reader(f)
             for row in csvreader:
-                for data in row:
-                    ques = Question.objects.create(question_text=row[0])
-                    for i in range(4):
-                        Choice.objects.create(
-                            ques=ques, choice_text=row[i+1])
+                ques = Question.objects.create(question_text=row[0])
+                for i in range(4):
+                    Choice.objects.create(
+                        ques=ques, choice_text=row[i+1])
 
 
 class Question(models.Model):
