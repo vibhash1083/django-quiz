@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.views.generic.edit import View
 
 from quiz.models import *
+from quiz.tasks import count
 
 
 class HomeView(View):
@@ -22,6 +23,7 @@ class QuestionView(View):
 
     def post(self, request, question_id):
         question = Question.objects.filter(id__gt=question_id).first()
+        count.delay()
         if question:
             return redirect("/question/" + str(question.id))
         else:

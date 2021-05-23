@@ -2,4 +2,4 @@
 Sample
 
 ## Celery
-celery worker --app core.celery.app
+celery -A core worker -B -l INFO

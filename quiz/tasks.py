@@ -1,6 +1,6 @@
-from celery import shared_task
+from celery.decorators import task
 
-@shared_task
+@task
 def count():
     for i in range(3):
         print(i*2)
