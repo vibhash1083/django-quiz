@@ -36,3 +36,14 @@ class QuestionView(View):
             calculate_score.delay(current_test.id)
             context = {}
             return render(request, "quiz/complete.html", context)
+
+
+class TestsDashboardView(View):
+    template_name = 'quiz/dashboard.html'
+
+    def get(self, request):
+        # tests = Test.objects.all()
+        tests = Test.objects.select_related('user').all()
+        context = {'tests': tests}
+        return render(request, self.template_name, context)
+
