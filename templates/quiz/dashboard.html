@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    {% for test in tests %}
+    <div class="col-md-12">
+        Test: {{test.created_date}}
+        Taken by: {{test.user.username}}
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}
